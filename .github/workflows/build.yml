@@ -52,7 +52,11 @@ jobs:
           add_executable(xr_test main.cpp)
           set(XROBOT_MODULES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Modules/)
           add_subdirectory(libxr)
-          target_include_directories(xr_test PUBLIC $<TARGET_PROPERTY:xr,INTERFACE_INCLUDE_DIRECTORIES> ${CMAKE_SOURCE_DIR}/User)
+          target_include_directories(xr_test PUBLIC
+            $<TARGET_PROPERTY:xr,INTERFACE_INCLUDE_DIRECTORIES>
+            ${CMAKE_SOURCE_DIR}/User
+            ${CMAKE_SOURCE_DIR}/Modules/${ENV{XR_MODULE_NAME}}/Drivers/DSP/Include
+          )
           target_link_libraries(xr_test PUBLIC xr)
           EOF
 
