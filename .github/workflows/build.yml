@@ -22,6 +22,12 @@ jobs:
         with:
           path: Modules/${{ env.XR_MODULE_NAME }}
 
+      - name: Clone CMSIS-DSP library
+        run: |
+          git clone --depth=1 https://github.com/ARM-software/CMSIS_5.git /tmp/CMSIS_5
+          mkdir -p Modules/${{ env.XR_MODULE_NAME }}/Drivers
+          cp -r /tmp/CMSIS_5/CMSIS/DSP Modules/${{ env.XR_MODULE_NAME }}/Drivers/
+
       - name: Create main.cpp
         run: |
           cat > main.cpp <<'EOF'
