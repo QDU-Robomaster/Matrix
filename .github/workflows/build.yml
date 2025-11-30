@@ -24,11 +24,7 @@ jobs:
 
       - name: Clone CMSIS-DSP library
         run: |
-          git clone --depth=1 https://github.com/ARM-software/CMSIS-DSP.git /tmp/CMSIS-DSP
-          mkdir -p Modules/${{ env.XR_MODULE_NAME }}/Drivers
-          cp -r /tmp/CMSIS-DSP CMSIS_Driver
-          mv CMSIS_Driver Modules/${{ env.XR_MODULE_NAME }}/Drivers/CMSIS_DSP
-          ls -la Modules/${{ env.XR_MODULE_NAME }}/Drivers/CMSIS_DSP/Include/
+          git clone --depth=1 https://github.com/ARM-software/CMSIS-DSP.git ./Modules/Matrix/Drivers/
 
       - name: Create main.cpp
         run: |
