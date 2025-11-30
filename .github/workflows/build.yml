@@ -25,6 +25,7 @@ jobs:
       - name: Clone CMSIS-DSP library
         run: |
           git clone --depth=1 https://github.com/ARM-software/CMSIS-DSP.git ./Modules/Matrix/Drivers/CMSIS-DSP
+          git clone --depth=1 https://github.com/ARM-software/CMSIS_5.git ./Modules/Matrix/Drivers/CMSIS_5
           ls ./Modules/Matrix/Drivers/CMSIS-DSP/Include
 
       - name: Create main.cpp
@@ -54,13 +55,15 @@ jobs:
           add_subdirectory(libxr)
 
           target_include_directories(xr PUBLIC
-          ${CMAKE_SOURCE_DIR}/Modules/Matrix/Drivers/CMSIS-DSP/Include)
-
+          ${CMAKE_SOURCE_DIR}/Modules/Matrix/Drivers/CMSIS-DSP/Include
+          ${CMAKE_SOURCE_DIR}/Modules/Matrix/Drivers/CMSIS_5/CMSIS/Core/Include
+          )
+          
           target_include_directories(xr_test PUBLIC
           $<TARGET_PROPERTY:xr,INTERFACE_INCLUDE_DIRECTORIES>
           ${CMAKE_SOURCE_DIR}/User
           )
-          
+
           target_link_libraries(xr_test PUBLIC xr)
           EOF
 
