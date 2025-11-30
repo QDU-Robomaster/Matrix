@@ -58,7 +58,12 @@ jobs:
           ${CMAKE_SOURCE_DIR}/Modules/Matrix/Drivers/CMSIS-DSP/Include
           ${CMAKE_SOURCE_DIR}/Modules/Matrix/Drivers/CMSIS_5/CMSIS/Core/Include
           )
-          
+
+          file(GLOB_RECURSE CMSIS_DSP_SRCS
+          ${CMAKE_SOURCE_DIR}/Modules/Matrix/Drivers/CMSIS-DSP/Source/*.c
+          )
+          target_sources(xr PRIVATE ${CMSIS_DSP_SRCS})
+
           target_include_directories(xr_test PUBLIC
           $<TARGET_PROPERTY:xr,INTERFACE_INCLUDE_DIRECTORIES>
           ${CMAKE_SOURCE_DIR}/User
