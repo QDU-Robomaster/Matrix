@@ -42,17 +42,17 @@ class Matrixf {
   float* operator[](const int& row) { return &this->data_[row * _cols]; }
 
   // Operators
-  Matrixf<_rows, _cols>& operator=(const Matrixf<_rows, _cols> &mat) {
+  Matrixf<_rows, _cols>& operator=(const Matrixf<_rows, _cols>& mat) {
     if (this != &mat) {
       memcpy(this->data_, mat.data_, _rows * _cols * sizeof(float));
     }
     return *this;
   }
-  Matrixf<_rows, _cols>& operator+=(const Matrixf<_rows, _cols> &mat) {
+  Matrixf<_rows, _cols>& operator+=(const Matrixf<_rows, _cols>& mat) {
     arm_mat_add_f32(&this->arm_mat_, &mat.arm_mat_, &this->arm_mat_);
     return *this;
   }
-  Matrixf<_rows, _cols>& operator-=(const Matrixf<_rows, _cols> &mat) {
+  Matrixf<_rows, _cols>& operator-=(const Matrixf<_rows, _cols>& mat) {
     arm_mat_sub_f32(&this->arm_mat_, &mat.arm_mat_, &this->arm_mat_);
     return *this;
   }
